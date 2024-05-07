@@ -1,4 +1,4 @@
-import storage from "@/services";
+import storage from "@/services/storage";
 import { Dispatch, SetStateAction, useState } from "react";
 
 function useLocalStorage<T>(key: string, initialValue: T) {
