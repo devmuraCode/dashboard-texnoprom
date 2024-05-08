@@ -27,7 +27,7 @@ const Create: React.FC<IProps> = ({
     async (values) => {
       const { data } = await Api.Create({ values });
 
-      return Mappers.getData(data && data.data);
+      return Mappers.getData(data.item);
     },
     {
       onSuccess,
@@ -54,11 +54,11 @@ const Create: React.FC<IProps> = ({
       initialValues={{
         title_ru: "",
         title_en: "",
-        description: "",
         img: "",
       }}
       enableReinitialize
     >
+      {/* @ts-ignore */}
       {(props: FormikProps<IFormValues>) => <Form>{children(props)}</Form>}
     </Formik>
   );

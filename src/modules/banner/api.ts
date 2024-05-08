@@ -18,9 +18,7 @@ export const Create = ({
   http.request.post('/banners', {
     title_ru: values.title_ru,
     title_en: values.title_en,
-    description: values.description,
     img: values.img,
-    
   });
 
 export const Update = ({
@@ -33,7 +31,6 @@ export const Update = ({
   http.request.put(`/banners/${id}`, {
     title_ru: values.title_ru,
     title_en: values.title_en,
-    description: values.description,
     img: values.img,
   });
 

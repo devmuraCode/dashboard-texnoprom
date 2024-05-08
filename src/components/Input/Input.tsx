@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-
+import React, { useState, ChangeEvent } from 'react';
 import { TextInputProps } from './Types';
-
 import Wrapper from './Wrapper';
 
 export type IProps = TextInputProps;
 
-const Input: React.FC<IProps> = ({
+const Input: React.ForwardRefExoticComponent<IProps> = React.forwardRef<HTMLInputElement, IProps>(({
   id,
   state,
   value,
@@ -15,50 +13,45 @@ const Input: React.FC<IProps> = ({
   placeholder,
   disabled,
   readOnly,
-  autoFocus,
+  autoFocus = false,
   onChange,
   onBlur,
-  prefix,
-  suffix,
-  iconPrefix,
-  onIconPrefix,
-  iconSuffix,
-  onIconSuffix,
   validationMessage,
-}) => {
+}, ref) => {
   const [isFocused, setFocused] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (onChange) onChange(e.target.value);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(false);
+    if (onBlur) onBlur(e);
+  };
 
   return (
     <Wrapper
-      {...{
-        size,
-        state,
-        isFocused,
-        disabled,
-        prefix,
-        suffix,
-        iconPrefix,
-        onIconPrefix,
-        iconSuffix,
-        onIconSuffix,
-        validationMessage,
-      }}
+      size={size}
+      state={state}
+      isFocused={isFocused}
+      disabled={disabled}
+      validationMessage={validationMessage}
     >
       <input
-        {...{ id, value, type, placeholder, disabled, readOnly, autoFocus }}
-        onChange={e => onChange && onChange(e.target.value)}
+        id={id}
+        ref={ref}
+        value={value}
+        type={type}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        autoFocus={autoFocus}
+        onChange={handleChange}
         onFocus={() => setFocused(true)}
-        onBlur={e => {
-          setFocused(false);
-          onBlur && onBlur(e);
-        }}
-        autoComplete='off'
-        autoCorrect='off'
-        autoCapitalize='off'
-        spellCheck='false'
+        onBlur={handleBlur}
       />
     </Wrapper>
   );
-};
+});
 
 export default Input;

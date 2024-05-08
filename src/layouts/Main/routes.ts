@@ -6,8 +6,12 @@ const routes: IMenu[] = [
     title: "banners",
   },
   {
-    key: "/category",
-    title: "category",
+    key: "/banners/create",
+    title: "banner_create",
+  },
+  {
+    key: "/banners/update/:id",
+    title: "banner_update",
   },
 ];
 

@@ -1,9 +1,9 @@
-import React from 'react';
-import { useField } from 'formik';
+import React from "react";
+import { useField } from "formik";
 
-import InputBase, { IProps as InputProps } from '@/components/Input';
+import InputBase, { IProps as InputProps } from "@/components/Input";
 
-export interface IProps extends Omit<InputProps, 'id' | 'value'> {
+export interface IProps extends Omit<InputProps, "id" | "value"> {
   name: string;
   validation?: {
     required?: boolean;
@@ -18,22 +18,22 @@ const Text: React.FC<IProps> = ({ name, validation, onChange, ...props }) => {
     name,
     validate: (value): string => {
       if (!validation) {
-        return '';
+        return "";
       }
 
       if (validation.required && !value) {
-        return 'validation_required';
+        return "validation_required";
       }
 
-      if (validation.min && validation.min > (value || '').length) {
+      if (validation.min && validation.min > (value || "").length) {
         return `validation_min_length_${validation.min}`;
       }
 
-      if (validation.max && validation.max < (value || '').length) {
+      if (validation.max && validation.max < (value || "").length) {
         return `validation_max_length_${validation.max}`;
       }
 
-      return '';
+      return "";
     },
   });
 
@@ -44,10 +44,10 @@ const Text: React.FC<IProps> = ({ name, validation, onChange, ...props }) => {
       {...field}
       {...props}
       id={field.name}
-      value={field.value || ''}
+      value={field.value || ""}
       validationMessage={!!meta.touched && meta.error}
-      state={hasError ? 'error' : undefined}
-      onChange={value => {
+      state={hasError ? "error" : undefined}
+      onChange={(value) => {
         helper.setValue(value);
         onChange && onChange(value);
       }}
