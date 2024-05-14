@@ -7,7 +7,7 @@ export declare namespace IApi {
 
   export namespace Single {
     export interface Response {
-      item: IEntity.Data;
+      items: IEntity.Data;
     }
   }
 }
@@ -34,8 +34,8 @@ export declare namespace IQuery {
 
 export declare namespace IForm {
   export interface Values {
-    title_en: any;
-    title_ru: any;
+    title_en: string;
+    title_ru: string;
     img: string;
   }
 }

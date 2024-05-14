@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import './bootstrap'
+import "./bootstrap";
 
 import App from "./App";
 

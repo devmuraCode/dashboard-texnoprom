@@ -6,6 +6,12 @@ export interface WrapperProps {
   disabled?: boolean;
   readOnly?: boolean;
   isFocused?: boolean;
+  prefix?: string;
+  suffix?: string;
+  iconPrefix?: React.ReactNode;
+  onIconPrefix?: () => void;
+  iconSuffix?: React.ReactNode;
+  onIconSuffix?: () => void;
   validationMessage?: string | React.ReactNode;
 }
 

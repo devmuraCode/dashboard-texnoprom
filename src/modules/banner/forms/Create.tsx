@@ -1,10 +1,11 @@
-import React from "react";
-import { Form, Formik, FormikProps } from "formik";
+import React from 'react';
+import { Form, Formik, FormikProps } from 'formik';
+import { useMutation } from 'react-query';
 
-import * as Api from "../api";
-import * as Types from "../types";
-import * as Mappers from "../mappers";
-import { useMutation } from "react-query";
+
+import * as Api from '../api';
+import * as Types from '../types';
+import * as Mappers from '../mappers';
 
 export type IFormValues = Types.IForm.Values;
 
@@ -14,31 +15,27 @@ interface IProps {
   onSuccess?: (data: Types.IEntity.Data) => void;
   onError?: (error: string) => void;
   onSettled?: () => void;
-  children(props: IChildren): React.ReactNode;
+  children(props: IChildren): JSX.Element;
 }
 
-const Create: React.FC<IProps> = ({
-  onSuccess,
-  onError,
-  onSettled,
-  children,
-}) => {
+const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) => {
   const mutation = useMutation<Types.IEntity.Data, string, IFormValues, any>(
-    async (values) => {
+    async values => {
       const { data } = await Api.Create({ values });
-
-      return Mappers.getData(data.item);
+      console.log(data);
+      
+      return Mappers.getData(data.items);
     },
     {
       onSuccess,
       onError,
       onSettled,
-    }
+    },
   );
 
   const handleSubmit = (
     values: IFormValues,
-    { isSubmitting, setSubmitting }: FormikProps<IFormValues>
+    { isSubmitting, setSubmitting }: FormikProps<IFormValues>,
   ) => {
     if (!isSubmitting) {
       setSubmitting(true);
@@ -52,8 +49,8 @@ const Create: React.FC<IProps> = ({
     <Formik<IFormValues>
       onSubmit={handleSubmit}
       initialValues={{
-        title_ru: "",
         title_en: "",
+        title_ru: "",
         img: "",
       }}
       enableReinitialize
