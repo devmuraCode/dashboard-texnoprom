@@ -60,18 +60,18 @@ const List: React.FC = () => {
             {
               key: "name",
               title: "column_name",
-              dataIndex: ["title"],
+              dataIndex: ["title_ru"],
             },
             {
               key: "photo",
               title: "column_photo",
-              dataIndex: ["photo", "uuid"],
-              render: (value) => <ImageContainer uuid={value} />,
+              dataIndex: ["img"],
+              render: (value) => <ImageContainer url={value} />,
             },
             {
               key: "description",
               title: "column_description",
-              dataIndex: ["description"],
+              dataIndex: ["title_en"],
             },
             {
               key: "status",
@@ -115,7 +115,7 @@ const List: React.FC = () => {
 
         <Spacer size={24} />
       </div>
-
+      {/* @ts-ignore */}
       <Modal open={!!selected} onCancel={() => setSelected("")} width={320}>
         <ConfirmDelete id={selected} onCancel={() => setSelected("")} />
       </Modal>

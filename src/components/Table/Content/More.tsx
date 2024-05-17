@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "antd";
+import cx from "classnames";
 
 import Dropdown from "@/components/Dropdown";
 
@@ -7,8 +7,8 @@ import cls from "../Table.module.scss";
 
 interface Item {
   title: string;
-  icon?: React.ReactNode;
   variant?: "primary" | "blue" | "danger";
+  icon?: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -17,26 +17,26 @@ interface IProps {
 }
 
 const More: React.FC<IProps> = ({ items = [] }) => {
-  console.log(items);
-  
-  const menuItems = items.map((item, index) => (
-    <Menu.Item key={index} onClick={item.onClick}>
-      {item.icon && <span className={cls.icon}>{item.icon}</span>}
-      {item.title} {/* Render item.title here */}
-    </Menu.Item>
-  ));
-
   return (
     <Dropdown
       menu={{
-        selectable: false,
-        onClick: () => {},
+        items: items.map(item => ({
+          key: item.title,
+          label: (
+            <div
+              className={cx(cls.menuItem, item.variant && cls[`menuItem--variant-${item.variant}`])}
+              onClick={item.onClick}
+            >
+              <div className={cls.menuItemTitle}>{item.title}</div>
+            </div>
+          ),
+        })),
       }}
       overlayClassName={cls.overlay}
       placement="bottomRight"
       trigger={["click"]}
     >
-      <Menu>{menuItems}</Menu>
+      {items.length ? <div className={cx(cls.content, cls["content--more"])}>more</div> : ""}
     </Dropdown>
   );
 };

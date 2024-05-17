@@ -8,7 +8,7 @@ export default [
   },
   {
     path: '/banners/create',
-    Page: lazy(() => import('@/pages/Banners/List')),
+    Page: lazy(() => import('@/pages/Banners/Create')),
   },
 
 ];

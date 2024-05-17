@@ -1,6 +1,5 @@
 import React from 'react';
 import { useField } from 'formik';
-
 import InputBase, { IProps as InputProps } from '@/components/Input';
 
 export interface IProps extends Omit<InputProps, 'id' | 'value'> {

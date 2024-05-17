@@ -28,6 +28,16 @@ const Form: React.FC = () => {
                 />
               </Label>
             </Grid.Col>
+            <Label title={'field_photo'} required>
+          <Fields.Uploader
+            name='img'
+            type='image'
+            accept={['image/*']}
+            maxFileSize={10240}
+            details={{ resolution: '512 x 512', extension: 'svg, png, jpg', size: '10 мб' }}
+            validation={{ required: true }}
+          />
+        </Label>
           </Grid.Row>
         </Grid.Col>
       </Grid.Col>
