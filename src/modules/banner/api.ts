@@ -34,5 +34,10 @@ export const Update = ({
     img: values.img,
   });
 
-export const Delete = ({ id }: { id: string }): AxiosPromise<Types.IApi.Single.Response> =>
-  http.request.delete(`/admin/banners/${id}`);
+export const Delete = ({ id }: { id: string }): AxiosPromise<Types.IApi.Single.Response> =>{
+  console.log(id);
+  
+ return http.request.delete(`/banners/${id}/`);
+}
+  
+  
