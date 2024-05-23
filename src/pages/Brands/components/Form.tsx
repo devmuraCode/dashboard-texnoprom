@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Fields from "@/container/Fields";
 import * as Grid from "@/components/Grid";
 import Label from "@/components/Label";
-import { useList } from "@/modules/collection/hooks";
+import { useList } from "@/modules/categories/hooks";
 
 const Form: React.FC = () => {
   const { items } = useList();
+
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (file: File | null) => {
+    setFile(file);
+  };
+
 
   return (
     <Grid.Row gutter={[24, 24]}>
@@ -17,14 +24,18 @@ const Form: React.FC = () => {
             </Label>
           </Grid.Col>
           <Grid.Col xs={24}>
-            <Label title="field_description" required>
-              <Fields.Text name="description" validation={{ required: true }} />
+          <Label title={"field_photo"} required>
+              <Fields.File
+                name={`logo`}
+                onChange={handleFileChange}
+                accept={"image/*"}
+              />
             </Label>
           </Grid.Col>
           <Grid.Col xs={24}>
-            <Label title="field_collection" required>
+            <Label title="field_category" required>
               <Fields.Select
-                name="collection"
+                name="category"
                 validation={{ required: true }}
                 // @ts-ignore
                 options={items.map(item => ({ label: item.title, value: item.id }))}

@@ -37,4 +37,12 @@ export default [
     path: "/categories/update/:id",
     Page: lazy(() => import("@/pages/Categories/Update")),
   },
+  {
+    path: "/brands",
+    Page: lazy(() => import("@/pages/Brands/List")),
+  },
+  {
+    path: "/brands/create",
+    Page: lazy(() => import("@/pages/Brands/Create")),
+  },
 ];
