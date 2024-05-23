@@ -1,1 +1,1 @@
-export const ENTITY = 'BANNER';
+export const ENTITY = 'COLLECTION';

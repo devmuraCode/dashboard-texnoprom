@@ -8,6 +8,8 @@ enum StatusCode {
    InternalServerError = 500
 }
 
+
+
 class Http {
    private instance: AxiosInstance;
 

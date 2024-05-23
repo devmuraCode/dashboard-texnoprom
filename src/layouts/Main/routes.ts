@@ -18,6 +18,18 @@ const routes: IMenu[] = [
     key: '/collections/create',
     title: 'collections_create',
   },
+  {
+    key: '/categories',
+    title: 'categories',
+  },
+  {
+    key: '/categories/create',
+    title: 'categories_create',
+  },
+  {
+    key: '/categories',
+    title: 'categories_',
+  },
 
 ];
 
