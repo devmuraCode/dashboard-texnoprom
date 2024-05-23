@@ -9,22 +9,16 @@ const routes: IMenu[] = [
     key: "/banners/create",
     title: "banner_create",
   },
+
   {
-    key: "/banners/update/:id",
-    title: "banner_update",
+    key: '/collections',
+    title: 'collections',
   },
   {
-    key: '/category',
-    title: 'category',
+    key: '/collections/create',
+    title: 'collections_create',
   },
-  {
-    key: "/category/create",
-    title: "category",
-  },
-  {
-    key: "/category/update/:id",
-    title: "category_update",
-  },
+
 ];
 
 export default routes;

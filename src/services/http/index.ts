@@ -71,6 +71,7 @@ class Http {
             break;
          }
          case StatusCode.Unauthorized: {
+            localStorage.clear();
             break;
          }
          case StatusCode.TooManyRequests: {
