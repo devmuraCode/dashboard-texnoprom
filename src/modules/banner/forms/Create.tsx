@@ -1,13 +1,15 @@
 import React from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { useMutation } from 'react-query';
-
-
 import * as Api from '../api';
 import * as Types from '../types';
 import * as Mappers from '../mappers';
 
-export type IFormValues = Types.IForm.Values;
+export type IFormValues = {
+  title_en: string;
+  title_ru: string;
+  img: File | null;
+};
 
 type IChildren = FormikProps<IFormValues>;
 
@@ -22,8 +24,6 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
   const mutation = useMutation<Types.IEntity.Data, string, IFormValues, any>(
     async values => {
       const { data } = await Api.Create({ values });
-      console.log(data);
-      
       return Mappers.getData(data.items);
     },
     {
@@ -35,14 +35,13 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
 
   const handleSubmit = (
     values: IFormValues,
-    { isSubmitting, setSubmitting }: FormikProps<IFormValues>,
+    { setSubmitting }: FormikProps<IFormValues>,
   ) => {
-    if (!isSubmitting) {
-      setSubmitting(true);
-      mutation.mutate(values, {
-        onError: () => setSubmitting(false),
-      });
-    }
+    setSubmitting(true);
+    mutation.mutate(values, {
+      onSuccess: () => setSubmitting(false),
+      onError: () => setSubmitting(false),
+    });
   };
 
   return (
@@ -51,11 +50,10 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
       initialValues={{
         title_en: "",
         title_ru: "",
-        img: "",
+        img: null,
       }}
       enableReinitialize
     >
-      {/* @ts-ignore */}
       {(props: FormikProps<IFormValues>) => <Form>{children(props)}</Form>}
     </Formik>
   );

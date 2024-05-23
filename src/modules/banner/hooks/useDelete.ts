@@ -1,15 +1,11 @@
-import { useMutation, useQueryClient } from "react-query";
-
+import { useMutation } from "react-query";
 import * as Api from "../api";
 import * as Types from "../types";
 import * as Mappers from "../mappers";
-import * as Constants from "../constants";
 
 const useDelete = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation<Types.IEntity.Data, string, Types.IQuery.Delete, any>(async ({ id }) => {
-    try {
+  return useMutation<Types.IEntity.Data, Error, Types.IQuery.Delete>(
+    async ({ id }) => {
       const { data } = await Api.Delete({ id });
       
       if (!data) {
@@ -17,9 +13,13 @@ const useDelete = () => {
       }
 
       return Mappers.getData(data.items);
-    } catch (error) {
-      throw new Error("Не удалось выполнить удаление: " + error.message);
+    },
+    {
+      onError: (error) => {
+        console.error("Ошибка при удалении:", error.message);
+      },
     }
-  })};
+  );
+};
 
 export default useDelete;

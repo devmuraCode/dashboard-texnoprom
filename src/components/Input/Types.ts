@@ -18,7 +18,7 @@ export interface WrapperProps {
 export interface TextInputProps extends WrapperProps {
   id: string;
   value: string;
-  type?: 'text' | 'number' | 'password';
+  type?: 'text' | 'number' | 'password' | 'file';
   placeholder?: string;
   autoFocus?: boolean;
   onChange?: (value: string) => void;

@@ -10,7 +10,7 @@ const Input: React.FC<IProps> = ({
   id,
   state,
   value,
-  type = 'text',
+  type,
   size = 'medium',
   placeholder,
   disabled,

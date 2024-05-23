@@ -36,6 +36,6 @@ export declare namespace IForm {
   export interface Values {
     title_en: string;
     title_ru: string;
-    img: string;
+    img: File | null;
   }
 }

@@ -18,7 +18,7 @@ const useSingle = ({ id }: IUseSingleProps) => {
       try {
         const { data } = await Api.Single({ id });
         return {
-          item: Mappers.getData(data.item),
+          item: Mappers.getData(data.items),
         };
       } catch (error) {
         throw new Error(
@@ -27,7 +27,7 @@ const useSingle = ({ id }: IUseSingleProps) => {
       }
     },
     {
-      initialData: { item: { id: "", title_en: "", title_ru: "", img: "" } },
+      initialData: { item: { id: "", title_en: "", title_ru: "", img: null } },
       enabled: !!id,
       retry: false,
     }

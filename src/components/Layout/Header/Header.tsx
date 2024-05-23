@@ -25,12 +25,6 @@ const Header: React.FC<IProps> = ({ onToggle, onClick }) => {
   const items: Item[] = useMemo(
     () => [
       {
-        name: "profile",
-        onClick: () => {
-          navigate("/user-view");
-        },
-      },
-      {
         name: "logout",
         onClick: onClick,
       },
